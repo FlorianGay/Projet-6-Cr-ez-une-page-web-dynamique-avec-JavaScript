@@ -30,6 +30,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	background-color: #FFFEF8;
 }
 ol, ul {
 	list-style: none;
@@ -210,3 +211,53 @@ footer nav ul {
 	background: #1D6154;
 	color: white;
 }
+
+/* Mise en page du login */
+
+.login {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 37px;
+}
+
+.login button {
+	background: #1D6154;
+	color: white;
+	border-radius: 60px;
+	padding: 10px 39px;
+	font-family: 'Syne';
+	font-weight: 700;
+	font-size: 14px;
+	border: none;
+}
+
+.forgot_password a {
+	text-decoration: underline;
+	font-family: 'Work Sans';
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
+	color: #3d3d3d;
+
+}
+
+.login label {
+	font-family: 'Work Sans';
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
+	color: #3d3d3d;
+}
+
+.login input {
+	border: none;
+	background: #FFFFFF;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	width: 379px;
+	height: 51px;
+}
+
+
+
+
