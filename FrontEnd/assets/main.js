@@ -1,8 +1,10 @@
+// Déclaration des variables
 let works = [];
 let categories = [];
 const gallery = document.querySelector('.gallery');
 const filters = document.querySelector('.filters');
 
+// Récupération des catégories via l'API
 async function fetchCategories() {
     try {
         const response = await fetch('http://localhost:5678/api/categories');
@@ -10,17 +12,18 @@ async function fetchCategories() {
         categories = listCategories;
 
         listCategories.map((category) => {
-            const filter = document.createElement('li');
+            const filter = document.createElement('li'); // Création des "li"
             filter.className = 'filter';
             filter.dataset.id = category.id;
             filter.textContent = category.name;
-            filters.appendChild(filter);
+            filters.appendChild(filter); // Association des "li" à la balise "ul" crée dans le html
         })
     } catch (error) {
         console.log(error);
     }
 }
 
+// Récupération des données works via l'API
 async function fetchWorks() {
     try {
         const response = await fetch('http://localhost:5678/api/works');
@@ -32,6 +35,7 @@ async function fetchWorks() {
     }
 }
 
+// Filtrage des projets par catégorie
 async function worksFilteredByCategory() {
     const filterItems = document.querySelectorAll('.filters li');
     filterItems.forEach((item) => item.addEventListener('click', () => {
@@ -43,14 +47,14 @@ async function worksFilteredByCategory() {
     }))
 }
 
-
+// Au chargement de la page
 addEventListener("DOMContentLoaded", async (event) => {
     await fetchCategories()
     await fetchWorks();
     await worksFilteredByCategory();
 });
 
-
+// Création des projets de la gallerie
 function displayWorks(works) {
     works.map((work) => {
         const workItem = document.createElement('figure');
