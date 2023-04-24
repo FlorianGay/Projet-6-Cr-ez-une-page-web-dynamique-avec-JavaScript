@@ -1,4 +1,4 @@
-/*// Déclaration des variables
+// Déclaration des variables
 let works = [];
 let categories = [];
 const gallery = document.querySelector('.gallery');
@@ -12,11 +12,11 @@ async function fetchCategories() {
         categories = listCategories;
 
         listCategories.map((category) => {
-            const filter = document.createElement('li'); // Création des "li"
+            const filter = document.createElement('button'); // Création des boutons
             filter.className = 'filter';
             filter.dataset.id = category.id;
             filter.textContent = category.name;
-            filters.appendChild(filter); // Association des "li" à la balise "ul" crée dans le html
+            filters.appendChild(filter); 
         })
     } catch (error) {
         console.log(error);
@@ -37,13 +37,20 @@ async function fetchWorks() {
 
 // Filtrage des projets par catégorie
 async function worksFilteredByCategory() {
-    const filterItems = document.querySelectorAll('.filters li');
+    const filterItems = document.querySelectorAll('.filters button');
     filterItems.forEach((item) => item.addEventListener('click', () => {
-        let worksFiltered = [];
-        gallery.innerHTML = '';
-        // Uniquement si on clique sur un filtre autre que "TOUS"
+            item.style.color = 'white';
+            item.style.background = '#1D6154';
+        if (item.dataset.id > 0) {
+            let worksFiltered = [];
+            gallery.innerHTML = '';
+            // Uniquement si on clique sur un filtre autre que "TOUS"
         worksFiltered = works.filter(work => work.category.id == item.dataset.id);
-        displayWorks(worksFiltered)
+        displayWorks(worksFiltered);
+        } else {
+            gallery.innerHTML = '';
+            displayWorks(works);
+        }
     }))
 }
 
@@ -64,13 +71,13 @@ function displayWorks(works) {
         gallery.appendChild(workItem);
     })
 }
-*/
 
+
+/*
 // Chargement de la page
 addEventListener('DOMContentLoaded', async (event) => {
     await genererGallery();
     await genererCategoriesFiltersGallery();
-    filtersCategories();
 })
 
 // Création de la gallerie
@@ -90,8 +97,6 @@ async function genererGallery () {
     } catch (error) {
         console.log('erreur serveur')
     }
-    
-    
 }
 
 // Création des boutons de filtres
@@ -112,16 +117,5 @@ async function genererCategoriesFiltersGallery () {
         console.log('erreur serveur');
     }
 }
+*/
 
-
-/*// Filtrage des projets par catégorie
-async function worksFilteredByCategory() {
-    const filterItems = document.querySelectorAll('.filters li');
-    filterItems.forEach((item) => item.addEventListener('click', () => {
-        let worksFiltered = [];
-        gallery.innerHTML = '';
-        // Uniquement si on clique sur un filtre autre que "TOUS"
-        worksFiltered = works.filter(work => work.category.id == item.dataset.id);
-        displayWorks(worksFiltered)
-    }))
-}*/

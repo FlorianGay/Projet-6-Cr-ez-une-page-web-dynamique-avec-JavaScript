@@ -205,11 +205,7 @@ footer nav ul {
 	font-size: 16px;
 	text-align: center;
 	color: #1D6154;
-}
-
-.filters button:hover {
-	background: #1D6154;
-	color: white;
+	background: white;
 }
 
 /* Mise en page du login */
