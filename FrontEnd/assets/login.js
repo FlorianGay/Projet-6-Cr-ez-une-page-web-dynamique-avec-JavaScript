@@ -42,7 +42,7 @@ async function fetchLogin() {
         window.localStorage.setItem('tokenId', valeurToken); // Stockage du token
         window.location.href='./index.html';
     } else {
-        alert('Identifiant out mot de passe incorrect')
+        alert('Identifiant ou mot de passe incorrect')
     }
 });
 

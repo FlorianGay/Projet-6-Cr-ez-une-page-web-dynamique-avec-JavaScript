@@ -66,7 +66,7 @@ function displayWorks(works) {
     works.map((work) => {
         const workItem = document.createElement('figure');
         workItem.dataset.id = work.category.id;
-        workItem.innerHTML = `<img src=${work.imageUrl} alt=${work.title}
+        workItem.innerHTML = `<img src=${work.imageUrl} alt=${work.title}>
             <figcaption>${work.title}</figcaption>`
         gallery.appendChild(workItem);
     })

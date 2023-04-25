@@ -42,7 +42,7 @@ function genererAdminElement () {
 
 // Deconnexion via logout
 adminLogin.addEventListener('click', function() {
-    window.localStorage.setItem('tokenId', null)
+    window.localStorage.setItem('tokenId', null);
     window.location.href='./index.html';
 })
 
