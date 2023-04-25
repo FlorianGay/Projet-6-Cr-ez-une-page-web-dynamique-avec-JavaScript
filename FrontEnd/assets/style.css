@@ -47,6 +47,12 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+/* modification des liens*/
+a {
+	text-decoration: none;
+	color: black;
+}
 /** end reset css**/
 body {
 	max-width: 1140px;
@@ -252,6 +258,47 @@ footer nav ul {
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 	width: 379px;
 	height: 51px;
+}
+
+/* Mise en page de la page admin*/
+.edition_bar {
+	display: none;
+	background-color: black;
+	color: white;
+	padding: 11px 0;
+	text-align: center;
+}
+
+.edition_bar i {
+	margin-right: 12px;
+}
+
+.btn_change {
+	border: none;
+	border-radius: 60px;
+	background: #FFFFFF;
+	padding: 11px 23px;
+	font-family: 'Work Sans';
+	font-weight: 500;
+	font-size: 14px;
+	margin-left: 21px;
+}
+
+.btn_modification {
+	border: none;
+	font-family: 'Work Sans';
+	font-weight: 400;
+	font-size: 14px;
+	background: #FFFFFF;
+	margin: 0 0 0 31px;
+}
+
+.btn_modification i {
+	color: black;
+}
+
+#introduction button {
+	margin: 15px 0 0 49.075px;
 }
 
 

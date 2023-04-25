@@ -1,10 +1,10 @@
 // stockage du token d'identification
-let tokenId = window.localStorage.getItem('tokenId');
-if (tokenId === null) {
+//let tokenId = window.localStorage.getItem('tokenId');
+/*if (tokenId === null) {
     const valeurToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY1MTg3NDkzOSwiZXhwIjoxNjUxOTYxMzM5fQ.JGN1p8YIfR-M-5eQ-Ypy6Ima5cKA4VbfL2xMr2MgHm4';
     window.localStorage.setItem('tokenId', valeurToken)
 }
-console.log(tokenId);
+console.log(tokenId);*/
 
 // Compte et mdp de connexion
 let admin = {
@@ -13,6 +13,7 @@ let admin = {
 }
 console.log(admin);
 const loginButton = document.getElementById('login-submit');
+const valeurToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY1MTg3NDkzOSwiZXhwIjoxNjUxOTYxMzM5fQ.JGN1p8YIfR-M-5eQ-Ypy6Ima5cKA4VbfL2xMr2MgHm4';
 
 // Envoie sur l'API
 async function fetchLogin() {
@@ -36,9 +37,10 @@ async function fetchLogin() {
     const mail = document.getElementById('mail').value;
     const password = document.getElementById('password').value;
 
-    if (mail === admin.email && password === admin.password) {
+    if (mail === admin.email && password === admin.password) { // Identifiant et mdp correct
         alert('Vous êtes bien connecté(e)');
-        //window.location.href='./index.html';
+        window.localStorage.setItem('tokenId', valeurToken); // Stockage du token
+        window.location.href='./index.html';
     } else {
         alert('Identifiant out mot de passe incorrect')
     }
