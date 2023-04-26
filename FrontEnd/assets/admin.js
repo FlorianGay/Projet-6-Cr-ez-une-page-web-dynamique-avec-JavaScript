@@ -25,7 +25,7 @@ function genererAdminElement () {
 
     // Ajout des icônes modifier
     const profilePictureEdition = document.createElement('figcaption');
-    profilePictureEdition.innerHTML = `<button class="btn_modification"><i class="fa-regular fa-pen-to-square"></i> modifier</button>`
+    profilePictureEdition.innerHTML = `<button class="btn_profile-picture"><i class="fa-regular fa-pen-to-square"></i> modifier</button>`
     profilePicture.appendChild(profilePictureEdition);
 
      const portfolioEdition = document.createElement('button');

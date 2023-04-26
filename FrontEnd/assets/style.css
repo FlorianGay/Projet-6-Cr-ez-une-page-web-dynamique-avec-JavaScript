@@ -218,6 +218,9 @@ button:hover {
 }
 
 /* Mise en page du login */
+.log {
+	font-weight: 600;
+}
 
 .login {
 	display: flex;
@@ -261,6 +264,7 @@ button:hover {
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 	width: 379px;
 	height: 51px;
+	margin-top: 7px;
 }
 
 /* Mise en page de la page admin*/
@@ -287,7 +291,7 @@ button:hover {
 	margin-left: 21px;
 }
 
-.btn_modification {
+.btn_modification, .btn_profile-picture {
 	border: none;
 	font-family: 'Work Sans';
 	font-weight: 400;
