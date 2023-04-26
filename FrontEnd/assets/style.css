@@ -304,7 +304,7 @@ button:hover {
 	margin: 15px 0 0 49.075px;
 }
 
-/* Mise en page de la modale */
+/* Mise en page de la modale galerie photo */
 
 .modal {
 	display: flex;
@@ -392,7 +392,95 @@ button:hover {
 	margin-left: 3px;
 }
 
+/* Mise en page de la modale ajout de projet */
 
+.modal_2 {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	padding: 30px 30px 55px 30px;
+	background: #FFFFFF;
+	border-radius: 10px;
+	position: absolute;
+	width: 35%;
+	top: 660px;
+	left: 30%;
+}
+.modal_2-return-close {
+	display: flex;
+	justify-content: space-between;
+}
+
+.return {
+	border: none;
+	background-color: #FFFFFF;
+}
+
+.modal_2 h2 {
+	font-family: 'Work Sans';
+	font-weight: 400;
+	font-size: 26px;
+	line-height: 30px;
+	color: black;
+}
+
+.picture {
+	display: flex;
+	flex-direction: column;
+	background: #E8F1F7;
+	border-radius: 3px;
+	padding: 28px 124px 19px 124px;
+	margin: 36px 0 30px 0;
+}
+
+.picture i {
+	color: #B9C5CC;
+	font-size: 56px;
+}
+
+.picture label {
+	padding: 10px 33px;
+	background: #CBD6DC;
+	border-radius: 50px;
+	font-family: 'Work Sans';
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
+	color: #306685;
+	margin: 21px 0 7px 0;
+}
+.picture p {
+	font-family: 'Work Sans';
+	font-weight: 400;
+	font-size: 10px;
+	line-height: 12px;
+	color: #444444;
+}
+
+.modal_2 input, select {
+	border: none;
+	background: #FFFFFF;
+	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.09);
+	width: 420px;
+	height: 51px;
+	margin: 10px 0 21px 0;
+	text-align: center;
+}
+
+.category {
+	padding-bottom: 26px;
+	border-bottom: 1px solid #B3B3B3;
+}
+
+.validation {
+	padding: 10px 49px;
+	background: #A7A7A7;
+	border-radius: 60px;
+	color: white;
+	border: none;
+	margin-top: 32px;
+	width: 40%;
+}
 
 
 

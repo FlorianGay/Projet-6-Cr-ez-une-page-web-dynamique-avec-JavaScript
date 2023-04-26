@@ -1,7 +1,11 @@
-const sectionmodale = document.querySelector('.modal');
+const sectionModale = document.querySelector('.modal');
 const buttonModification = document.querySelectorAll('.btn_modification')
 const pageContent = document.querySelector('body');
-const crossCloseModale = document.querySelector('.close_modale');
+const crossCloseModale = document.querySelectorAll('.close_modale');
+const buttonAddPicture = document.querySelector('.add_picture');
+const buttonReturnModale = document.querySelector('.return');
+const sectionModale2 = document.querySelector('.modal_2');
+
 let modal = null
 
 // Ajout des photos des projets dans la modale
@@ -27,19 +31,22 @@ genererPictureGallery ();
 
 // Ouverture de la modale
 const openModale = function () {
-    sectionmodale.style.display = null;
-    sectionmodale.removeAttribute('aria-hidden');
-    sectionmodale.setAttribute('aria-modal', 'true');
+    sectionModale.style.display = null;
+    sectionModale.removeAttribute('aria-hidden');
+    sectionModale.setAttribute('aria-modal', 'true');
     pageContent.style.background = 'rgba(0, 0, 0, 0.3)';
-    modal = sectionmodale;
+    modal = sectionModale;
 }
 
 // Fermeture de la modale
 const closeModale = function () {
     if (modal === null) return;
-    sectionmodale.style.display = 'none';
-    sectionmodale.setAttribute('aria-hidden', 'true');
-    sectionmodale.removeAttribute('aria-modal');
+    sectionModale.style.display = 'none';
+    sectionModale.setAttribute('aria-hidden', 'true');
+    sectionModale.removeAttribute('aria-modal');
+    sectionModale2.style.display = 'none';
+    sectionModale2.setAttribute('aria-hidden', 'true');
+    sectionModale2.removeAttribute('aria-modal');
     pageContent.style.background = null;
     modal = null;
 }
@@ -50,4 +57,39 @@ buttonModification.forEach(b => {
 });
 
 // Bouton de fermeture de la modale
-crossCloseModale.addEventListener('click', closeModale);
+crossCloseModale.forEach(b => {
+    b.addEventListener('click', closeModale);
+});
+
+// Fermeture via touche escape
+window.addEventListener('keydown', function (event) {
+    if (event.key === "Escape" || event.key === "Esc") {
+        closeModale(event)
+    }
+})
+
+// Ouverture de la modale d'ajout de photo
+const openModale2 = function () {
+    sectionModale2.style.display = null;
+    sectionModale2.removeAttribute('aria-hidden');
+    sectionModale2.setAttribute('aria-modal', 'true'); 
+    sectionModale.style.display = 'none';
+    sectionModale.setAttribute('aria-hidden', 'true');
+    sectionModale.removeAttribute('aria-modal');
+}
+
+// Bouton d'ouverture de la modale d'ajout de photo
+buttonAddPicture.addEventListener('click', openModale2);
+
+// Retour à la 1ère modale
+const returnModale1 = function () {
+    sectionModale2.style.display = 'none';
+    sectionModale2.setAttribute('aria-hidden', 'true');
+    sectionModale2.removeAttribute('aria-modal');
+    sectionModale.style.display = null;
+    sectionModale.removeAttribute('aria-hidden');
+    sectionModale.setAttribute('aria-modal', 'true');
+}
+
+// Bouton de retour à la 1ère modale
+buttonReturnModale.addEventListener('click', returnModale1);
