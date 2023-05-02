@@ -1,6 +1,5 @@
 // Récupération du token stocké
 let tokenId = window.localStorage.getItem('tokenId');
-const valeurToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY1MTg3NDkzOSwiZXhwIjoxNjUxOTYxMzM5fQ.JGN1p8YIfR-M-5eQ-Ypy6Ima5cKA4VbfL2xMr2MgHm4';
 console.log(tokenId);
 
 const editionBar = document.querySelector('.edition_bar');
@@ -9,8 +8,10 @@ const sectionPortfolio = document.querySelector('#portfolio h2');
 const categoryFilter = document.querySelector('.filters');
 const adminLogin = document.querySelector('.login')
 
+
+
 // Si la valeur du token est bonne
-if (tokenId === valeurToken) {
+if (tokenId) {
     console.log('le token est bon, vous pouvez admin');
     genererAdminElement();
 }
@@ -42,7 +43,10 @@ function genererAdminElement () {
 
 // Deconnexion via logout
 adminLogin.addEventListener('click', function() {
-    window.localStorage.setItem('tokenId', null);
+    window.localStorage.removeItem('tokenId');
     window.location.href='./index.html';
-})
+});
+
+
+
 

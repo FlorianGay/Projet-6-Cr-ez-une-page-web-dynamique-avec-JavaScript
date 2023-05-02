@@ -1,3 +1,5 @@
+
+
 // Déclaration des variables
 let works = [];
 let categories = [];
@@ -39,8 +41,8 @@ async function fetchWorks() {
 async function worksFilteredByCategory() {
     const filterItems = document.querySelectorAll('.filters button');
     filterItems.forEach((item) => item.addEventListener('click', () => {
-            item.style.color = 'white';
-            item.style.background = '#1D6154';
+        filterItems.forEach((i) => i.classList.remove('active'));
+        item.classList.add('active');
         if (item.dataset.id > 0) {
             let worksFiltered = [];
             gallery.innerHTML = '';
@@ -71,6 +73,7 @@ function displayWorks(works) {
         gallery.appendChild(workItem);
     })
 }
+
 
 
 /*

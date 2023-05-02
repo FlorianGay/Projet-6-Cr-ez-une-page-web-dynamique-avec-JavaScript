@@ -217,6 +217,12 @@ button:hover {
 	background: white;
 }
 
+.filters .active {
+	color: white;
+	background-color: #1D6154;
+}
+
+
 /* Mise en page du login */
 .log {
 	font-weight: 600;
@@ -309,17 +315,28 @@ button:hover {
 }
 
 /* Mise en page de la modale galerie photo */
+.bloc_modal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+}
+
 
 .modal {
 	display: flex;
 	flex-direction: column;
 	text-align: center;
-	padding: 60px 105px 48px 150px;
+	padding: 60px 105px 48px 105px;
 	background: #FFFFFF;
 	border-radius: 10px;
 	position: absolute;
-	width: 35%;
-	top: 660px;
+	width: 380px;
+	top: 50px;
 	left: 25%;
 }
 
@@ -367,7 +384,7 @@ button:hover {
 .modale_gallery {
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
-	grid-column-gap: 20px;
+	grid-column-gap: 6px;
 	grid-row-gap: 20px;
 	border-bottom: 1px solid #B3B3B3;
 	padding-bottom: 47px;
@@ -383,17 +400,32 @@ button:hover {
 
 .modale_gallery img {
 	width: 100%;
+	object-fit: cover;
+}
+
+.modale_gallery figure {
+	position: relative;
 }
 
 .move_delete {
+	position: absolute;
 	top: 6px;
+	right: 6px;
 }
 
 .move_delete i {
 	color: white;
-	background-color: black;
-	padding: 4px;
-	margin-left: 3px;
+	font-size: 9px;
+}
+
+.btn_move, .btn_delete {
+	border: none;
+	background: black;
+	border-radius: 2px;
+}
+
+.btn_move {
+	display: none;
 }
 
 /* Mise en page de la modale ajout de projet */
@@ -407,7 +439,7 @@ button:hover {
 	border-radius: 10px;
 	position: absolute;
 	width: 35%;
-	top: 660px;
+	top: 50px;
 	left: 30%;
 }
 .modal_2-return-close {
@@ -428,7 +460,7 @@ button:hover {
 	color: black;
 }
 
-.picture {
+.add_file_input, .file_preview {
 	display: flex;
 	flex-direction: column;
 	background: #E8F1F7;
@@ -437,12 +469,12 @@ button:hover {
 	margin: 36px 0 30px 0;
 }
 
-.picture i {
+.add_file_input i {
 	color: #B9C5CC;
 	font-size: 56px;
 }
 
-.picture label {
+.add_file_input label {
 	padding: 10px 33px;
 	background: #CBD6DC;
 	border-radius: 50px;
@@ -453,7 +485,7 @@ button:hover {
 	color: #306685;
 	margin: 21px 0 7px 0;
 }
-.picture p {
+.add_file_input p {
 	font-family: 'Work Sans';
 	font-weight: 400;
 	font-size: 10px;
@@ -461,14 +493,19 @@ button:hover {
 	color: #444444;
 }
 
+.preview {
+	width: 100%;
+	object-fit: cover;
+}
+
 .modal_2 input, select {
 	border: none;
 	background: #FFFFFF;
 	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.09);
-	width: 420px;
+	width: 100%;
 	height: 51px;
 	margin: 10px 0 21px 0;
-	text-align: center;
+	text-align: left;
 }
 
 .category {
@@ -486,5 +523,7 @@ button:hover {
 	width: 40%;
 }
 
-
+.title, .category {
+	text-align: left;
+}
 

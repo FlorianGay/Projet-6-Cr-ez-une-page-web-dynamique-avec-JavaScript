@@ -1,22 +1,9 @@
-// stockage du token d'identification
-//let tokenId = window.localStorage.getItem('tokenId');
-/*if (tokenId === null) {
-    const valeurToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY1MTg3NDkzOSwiZXhwIjoxNjUxOTYxMzM5fQ.JGN1p8YIfR-M-5eQ-Ypy6Ima5cKA4VbfL2xMr2MgHm4';
-    window.localStorage.setItem('tokenId', valeurToken)
-}
-console.log(tokenId);*/
-
-// Compte et mdp de connexion
-let admin = {
-    email : 'sophie.bluel@test.tld',
-    password: 'S0phie'
-}
-console.log(admin);
-const loginButton = document.getElementById('login-submit');
-const valeurToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY1MTg3NDkzOSwiZXhwIjoxNjUxOTYxMzM5fQ.JGN1p8YIfR-M-5eQ-Ypy6Ima5cKA4VbfL2xMr2MgHm4';
+const loginForm = document.querySelector('.login');
 
 // Envoie sur l'API
 async function fetchLogin() {
+    const mail = document.querySelector('#mail').value;
+    const password = document.querySelector('#password').value;
     await fetch('http://localhost:5678/api/users/login', {
         method: 'POST',
         headers: {
@@ -25,25 +12,27 @@ async function fetchLogin() {
         },
         body: JSON.stringify({
             email: mail,
-            password : password,
+            password: password,
         }),
     })
-    .then ((response) => response.json())
+        .then((response) => {
+            console.log(response);
+            if (response.status === '404') {
+                // afficher error message
+                return false;
+            }
+            return response.json()
+        })
+        .then ((data) => {
+            window.localStorage.setItem('tokenId', data.token); // Stockage du token
+            window.location.href = './index.html';
+        })
 }
 
 // Bouton de validation du login
- loginButton.addEventListener('click', (event) => {
+loginForm.addEventListener('submit', async (event) => {
     event.preventDefault();
-    const mail = document.getElementById('mail').value;
-    const password = document.getElementById('password').value;
-
-    if (mail === admin.email && password === admin.password) { // Identifiant et mdp correct
-        alert('Vous êtes bien connecté(e)');
-        window.localStorage.setItem('tokenId', valeurToken); // Stockage du token
-        window.location.href='./index.html';
-    } else {
-        alert('Identifiant ou mot de passe incorrect')
-    }
+    await fetchLogin();
 });
 
 
