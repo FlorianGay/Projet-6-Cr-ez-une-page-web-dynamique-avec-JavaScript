@@ -9,7 +9,6 @@ const categoryFilter = document.querySelector('.filters');
 const adminLogin = document.querySelector('.login')
 
 
-
 // Si la valeur du token est bonne
 if (tokenId) {
     console.log('le token est bon, vous pouvez admin');

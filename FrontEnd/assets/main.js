@@ -1,6 +1,3 @@
-
-
-// Déclaration des variables
 let works = [];
 let categories = [];
 const gallery = document.querySelector('.gallery');
@@ -73,52 +70,3 @@ function displayWorks(works) {
         gallery.appendChild(workItem);
     })
 }
-
-
-
-/*
-// Chargement de la page
-addEventListener('DOMContentLoaded', async (event) => {
-    await genererGallery();
-    await genererCategoriesFiltersGallery();
-})
-
-// Création de la gallerie
-async function genererGallery () {
-    try {
-        const response = await fetch('http://localhost:5678/api/works');
-        const works = await response.json();
-        console.log(works);
-        works.map((work) => {
-            const sectionGallery = document.querySelector('.gallery');
-            const figureGallery = document.createElement('figure');
-            figureGallery.dataset.id = work.category.id;
-            figureGallery.innerHTML = `<img src=${work.imageUrl} alt=${work.title}
-            <figcaption>${work.title}</figcaption>`
-            sectionGallery.appendChild(figureGallery);
-        });
-    } catch (error) {
-        console.log('erreur serveur')
-    }
-}
-
-// Création des boutons de filtres
-async function genererCategoriesFiltersGallery () {
-    try {
-        const response = await fetch('http://localhost:5678/api/categories');
-        const categories = await response.json();
-        console.log(categories);
-        categories.map((category) => {
-            const sectionFilters = document.querySelector('.filters');
-            const buttonFilters = document.createElement('button');
-            buttonFilters.className = 'filter';
-            buttonFilters.dataset.id = category.id;
-            buttonFilters.textContent = category.name;
-            sectionFilters.appendChild(buttonFilters);
-        });
-    } catch (error) {
-        console.log('erreur serveur');
-    }
-}
-*/
-
