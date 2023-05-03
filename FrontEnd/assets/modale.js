@@ -38,7 +38,7 @@ async function genererPictureGallery () {
             modaleFigureGallery.innerHTML = `<img src=${work.imageUrl} alt=${work.title}>
             <div class="move_delete">
                 <button class="btn_move"><i class="fa-solid fa-up-down-left-right"></i></button>
-                <button class="btn_delete"><i class="fa-solid fa-trash-can"></i></button>
+                <button class="btn_delete" id="${work.id}" onclick="deleteWork(this)"><i class="fa-solid fa-trash-can"></i></button>
             </div>
             <figcaption> éditer </figcaption>`
             modaleGallery.appendChild(modaleFigureGallery);
@@ -219,20 +219,33 @@ deleteAllGallery.addEventListener('click', function () {
     }
 })
 
-////////////////////////////////////////////////////////
 // Suppression d'un projet
-async function fetchDeleteWork () {
-    await fetch(`http://localhost:5678/api/works/`, {
+async function fetchDeleteWork (event) {
+    await fetch(`http://localhost:5678/api/works/${event}`, {
         method: 'DELETE',
         headers: {
             Accept: '*/*',
             'Authorization': `Bearer ${window.localStorage.getItem('tokenId')}`,
         }
     })
+        .then ((response) => {
+            console.log(response);
+            if (response.status === '401') {
+                alert ('Erreur serveur');
+                return false;
+            }
+        })
 }
 
-// Bouton de suppresion d'un projet
-
-const buttonDelete = document.querySelectorAll('.btn_delete');
-const projectImage = document.querySelector('.project_img');
+const deleteWork = async function(event) {
+    const projectId = event.id
+    console.log(projectId);
+    const modaleGallery = document.querySelector('.modale_gallery');
+    modaleGallery.innerHTML = '';
+    const projectGallery = document.querySelector('.gallery');
+    projectGallery.innerHTML='';
+    await fetchDeleteWork(projectId);
+    await genererPictureGallery();
+    await genererGallery ();
+}
 
