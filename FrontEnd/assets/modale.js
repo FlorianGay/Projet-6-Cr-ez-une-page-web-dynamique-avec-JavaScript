@@ -147,12 +147,24 @@ addFileInput.addEventListener('change', function () {
     }
 });
 
-// Changelent du bouton validation
-
 
 // Ajout d'un nouveau projet
 const addProjectForm = document.querySelector('.add_project')
 
+// Changement du bouton en fonction des champs remplis
+const buttonValidation = document.querySelector('.validation');
+const addPictureInput = document.getElementById('picture');
+const addTitleInput = document.getElementById('title');
+const addCategoryInput = document.getElementById('category_select');
+
+function buttonChange() {
+    if (addPictureInput.value !== '' && addTitleInput.value !=='' && addCategoryInput.value !=='') {
+        buttonValidation.style.background = '#1D6154';
+        }
+}
+addProjectForm.addEventListener('change', buttonChange);
+
+// Ajout d'un nouveau projet
 async function fetchPostWork () {
     const formData = new FormData();
     formData.append('image', document.getElementById('picture').files[0]);
@@ -194,6 +206,20 @@ addProjectForm.addEventListener('submit', async (event) => {
     await genererGallery ();
 });
 
+
+// Suppression de toute la gallerie
+const deleteAllGallery = document.querySelector('.delete_gallery');
+
+deleteAllGallery.addEventListener('click', function () {
+    let confirmation = prompt('Voulez-vous vraiment supprimer toute la gallerie de projet? : YES ou NO');
+    if(confirmation === 'YES') {
+        alert('Tous les projets on était effacé')
+    } else {
+        alert(`Aucun projet n'a était effacé`)
+    }
+})
+
+////////////////////////////////////////////////////////
 // Suppression d'un projet
 async function fetchDeleteWork () {
     await fetch(`http://localhost:5678/api/works/`, {
@@ -207,6 +233,6 @@ async function fetchDeleteWork () {
 
 // Bouton de suppresion d'un projet
 
-
-
+const buttonDelete = document.querySelectorAll('.btn_delete');
+const projectImage = document.querySelector('.project_img');
 

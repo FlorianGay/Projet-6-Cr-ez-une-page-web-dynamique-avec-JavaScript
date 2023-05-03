@@ -336,8 +336,8 @@ button:hover {
 	border-radius: 10px;
 	position: absolute;
 	width: 380px;
-	top: 50px;
-	left: 25%;
+	top: 30px;
+	left: 30%;
 }
 
 .modal h2 {
@@ -352,6 +352,9 @@ button:hover {
 	border: none;
 	background-color: #FFFFFF;
 	align-self: end;
+	position: absolute;
+	right: 36px;
+	top: 26px;
 }
 
 .fa-xmark {
@@ -368,7 +371,6 @@ button:hover {
 	font-weight: 700;
 	font-size: 14px;
 	border: none;
-	width: 50%;
 	align-self: center;
 }
 
@@ -439,7 +441,7 @@ button:hover {
 	border-radius: 10px;
 	position: absolute;
 	width: 35%;
-	top: 50px;
+	top: 40px;
 	left: 30%;
 }
 .modal_2-return-close {
