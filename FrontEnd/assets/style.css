@@ -222,7 +222,6 @@ button:hover {
 	background-color: #1D6154;
 }
 
-
 /* Mise en page du login */
 .log {
 	font-weight: 600;
@@ -326,7 +325,6 @@ button:hover {
 	overflow: auto;
 }
 
-
 .modal {
 	display: flex;
 	flex-direction: column;
@@ -360,7 +358,6 @@ button:hover {
 .fa-xmark {
 	color: black;
 }
-
 
 .add_picture {
 	background: #1D6154;
@@ -426,12 +423,7 @@ button:hover {
 	border-radius: 2px;
 }
 
-.btn_move {
-	display: none;
-}
-
 /* Mise en page de la modale ajout de projet */
-
 .modal_2 {
 	display: flex;
 	flex-direction: column;
@@ -498,6 +490,10 @@ button:hover {
 .preview {
 	width: 100%;
 	object-fit: cover;
+}
+
+.file_preview {
+	display: none;
 }
 
 .modal_2 input, select {

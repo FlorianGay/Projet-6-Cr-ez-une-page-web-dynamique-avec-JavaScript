@@ -53,13 +53,6 @@ async function worksFilteredByCategory() {
     }))
 }
 
-// Au chargement de la page
-addEventListener("DOMContentLoaded", async (event) => {
-    await fetchCategories()
-    await fetchWorks();
-    await worksFilteredByCategory();
-});
-
 // Création des projets de la gallerie
 function displayWorks(works) {
     works.map((work) => {

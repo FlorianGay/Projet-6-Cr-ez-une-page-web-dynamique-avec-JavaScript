@@ -5,8 +5,25 @@ const crossCloseModale = document.querySelectorAll('.close_modale');
 const buttonAddPicture = document.querySelector('.add_picture');
 const buttonReturnModale = document.querySelector('.return');
 const sectionModale2 = document.querySelector('.modal_2');
-
+const addFileInput = document.getElementById('picture');
+const addFileContainer = document.querySelector('.add_file_input');
+const filePreviewContainer = document.querySelector('.file_preview');
+const filePreview = document.querySelector('.preview');
+const addProjectForm = document.querySelector('.add_project')
+const buttonValidation = document.querySelector('.validation');
+const addPictureInput = document.getElementById('picture');
+const addTitleInput = document.getElementById('title');
+const addCategoryInput = document.getElementById('category_select');
+const deleteAllGallery = document.querySelector('.delete_gallery');
 let modal = null
+
+// Au chargement de la page
+addEventListener("DOMContentLoaded", async (event) => {
+    await fetchCategories()
+    await fetchWorks();
+    await worksFilteredByCategory();
+    await genererPictureGallery();
+});
 
 async function genererGallery () {
     try {
@@ -16,12 +33,12 @@ async function genererGallery () {
             const sectionGallery = document.querySelector('.gallery');
             const figureGallery = document.createElement('figure');
             figureGallery.dataset.id = work.category.id;
-            figureGallery.innerHTML = `<img src=${work.imageUrl} alt=${work.title}
+            figureGallery.innerHTML = `<img src=${work.imageUrl} alt=${work.title}>
             <figcaption>${work.title}</figcaption>`
             sectionGallery.appendChild(figureGallery);
         });
     } catch (error) {
-        console.log('erreur serveur')
+        alert('erreur serveur')
     }
 }
 
@@ -38,22 +55,21 @@ async function genererPictureGallery () {
             modaleFigureGallery.innerHTML = `<img src=${work.imageUrl} alt=${work.title}>
             <div class="move_delete">
                 <button class="btn_move"><i class="fa-solid fa-up-down-left-right"></i></button>
-                <button class="btn_delete" id="${work.id}" onclick="deleteWork(this)"><i class="fa-solid fa-trash-can"></i></button>
+                <button class="btn_delete" id="${work.id}"><i class="fa-solid fa-trash-can"></i></button>
             </div>
             <figcaption> éditer </figcaption>`
             modaleGallery.appendChild(modaleFigureGallery);
         });
+        const btnDeletes = document.querySelectorAll('.btn_delete');
+        btnDeletes.forEach((btnDelete) => btnDelete.addEventListener('click', () => deleteWork(btnDelete.id)));
     } catch (error) {
-        console.log('erreur serveur')
+        alert('erreur serveur')
     }
 }
-genererPictureGallery ();
 
 // Ouverture de la modale
 const openModale = function () {
     sectionModale.style.display = null;
-    sectionModale.removeAttribute('aria-hidden');
-    sectionModale.setAttribute('aria-modal', 'true');
     modalContent.style.display = 'block'
     modalContent.style.background = 'rgba(0, 0, 0, 0.3)';
     modal = sectionModale;
@@ -63,13 +79,10 @@ const openModale = function () {
 const closeModale = function () {
     if (modal === null) return;
     sectionModale.style.display = 'none';
-    sectionModale.setAttribute('aria-hidden', 'true');
-    sectionModale.removeAttribute('aria-modal');
     sectionModale2.style.display = 'none';
-    sectionModale2.setAttribute('aria-hidden', 'true');
-    sectionModale2.removeAttribute('aria-modal');
     modalContent.style.display = 'none'
     modalContent.style.background = 'rgba(0, 0, 0)';
+    cleanForm();
     modal = null;
 }
 
@@ -99,11 +112,7 @@ window.addEventListener('keydown', function (event) {
 // Ouverture de la modale d'ajout de photo
 const openModale2 = function () {
     sectionModale2.style.display = null;
-    sectionModale2.removeAttribute('aria-hidden');
-    sectionModale2.setAttribute('aria-modal', 'true'); 
     sectionModale.style.display = 'none';
-    sectionModale.setAttribute('aria-hidden', 'true');
-    sectionModale.removeAttribute('aria-modal');
 }
 
 // Bouton d'ouverture de la modale d'ajout de photo
@@ -112,24 +121,14 @@ buttonAddPicture.addEventListener('click', openModale2);
 // Retour à la 1ère modale
 const returnModale1 = function () {
     sectionModale2.style.display = 'none';
-    sectionModale2.setAttribute('aria-hidden', 'true');
-    sectionModale2.removeAttribute('aria-modal');
     sectionModale.style.display = null;
-    sectionModale.removeAttribute('aria-hidden');
-    sectionModale.setAttribute('aria-modal', 'true');
+    cleanForm();
 }
 
 // Bouton de retour à la 1ère modale
 buttonReturnModale.addEventListener('click', returnModale1);
 
-
-
 // Preview image ajouter
-const addFileInput = document.getElementById('picture');
-const addFileContainer = document.querySelector('.add_file_input');
-const filePreviewContainer = document.querySelector('.file_preview');
-const filePreview = document.querySelector('.preview');
-
 addFileInput.addEventListener('change', function () {
     const file = this.files[0];
     if (file) {
@@ -147,19 +146,12 @@ addFileInput.addEventListener('change', function () {
     }
 });
 
-
-// Ajout d'un nouveau projet
-const addProjectForm = document.querySelector('.add_project')
-
 // Changement du bouton en fonction des champs remplis
-const buttonValidation = document.querySelector('.validation');
-const addPictureInput = document.getElementById('picture');
-const addTitleInput = document.getElementById('title');
-const addCategoryInput = document.getElementById('category_select');
-
 function buttonChange() {
     if (addPictureInput.value !== '' && addTitleInput.value !=='' && addCategoryInput.value !=='') {
         buttonValidation.style.background = '#1D6154';
+        } else {
+            buttonValidation.style.background = null;
         }
 }
 addProjectForm.addEventListener('change', buttonChange);
@@ -171,12 +163,9 @@ async function fetchPostWork () {
     formData.append('title', document.getElementById('title').value);
     formData.append('category', document.getElementById('category_select').value);
     
-
     await fetch('http://localhost:5678/api/works', {
         method: 'POST',
         headers: {
-            //Accept:'application/json',
-            //'Content-Type': 'multipart/form-data',
             'Authorization': `Bearer ${window.localStorage.getItem('tokenId')}`,
         },
         body: formData,
@@ -184,13 +173,13 @@ async function fetchPostWork () {
         .then ((response) => {
             console.log(response);
             if (response.status === '401') {
-                alert ('Erreur serveur');
+                alert ("Vous n'êtes pas connectés.");
+                return false;
+            } else if (response.status === '500') {
+                alert ("Erreur Serveur");
                 return false;
             }
             return response.json();
-        })
-        .then ((data) => {
-            console.log(data)
         })
 }
 
@@ -204,12 +193,10 @@ addProjectForm.addEventListener('submit', async (event) => {
     await fetchPostWork();
     await genererPictureGallery();
     await genererGallery ();
+    cleanForm();
 });
 
-
 // Suppression de toute la gallerie
-const deleteAllGallery = document.querySelector('.delete_gallery');
-
 deleteAllGallery.addEventListener('click', function () {
     let confirmation = prompt('Voulez-vous vraiment supprimer toute la gallerie de projet? : YES ou NO');
     if(confirmation === 'YES') {
@@ -220,8 +207,8 @@ deleteAllGallery.addEventListener('click', function () {
 })
 
 // Suppression d'un projet
-async function fetchDeleteWork (event) {
-    await fetch(`http://localhost:5678/api/works/${event}`, {
+async function fetchDeleteWork (id) {
+    await fetch(`http://localhost:5678/api/works/${id}`, {
         method: 'DELETE',
         headers: {
             Accept: '*/*',
@@ -237,9 +224,9 @@ async function fetchDeleteWork (event) {
         })
 }
 
-const deleteWork = async function(event) {
-    const projectId = event.id
-    console.log(projectId);
+const deleteWork = async function(projectId) {
+    console.log(works);
+    console.log('test' + projectId);
     const modaleGallery = document.querySelector('.modale_gallery');
     modaleGallery.innerHTML = '';
     const projectGallery = document.querySelector('.gallery');
@@ -249,3 +236,10 @@ const deleteWork = async function(event) {
     await genererGallery ();
 }
 
+// Nettoyage du formulaire
+function cleanForm() {
+    addProjectForm.reset();
+    addFileContainer.style.display = null;
+    filePreviewContainer.style.display = null;
+    filePreview.style.display = 'none';
+}
