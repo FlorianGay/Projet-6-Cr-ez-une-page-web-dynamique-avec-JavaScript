@@ -4,7 +4,8 @@ const loginForm = document.querySelector('.login');
 async function fetchLogin() {
     const mail = document.querySelector('#mail').value;
     const password = document.querySelector('#password').value;
-    await fetch('http://localhost:5678/api/users/login', {
+    if (mail === 'sophie.bluel@test.tld' && password === 'S0phie') {
+        await fetch('http://localhost:5678/api/users/login', {
         method: 'POST',
         headers: {
             Accept: 'application/json, text/plain, */*',
@@ -27,6 +28,9 @@ async function fetchLogin() {
             window.localStorage.setItem('tokenId', data.token); // Stockage du token
             window.location.href = './index.html';
         })
+    } else {
+        alert('Erreur dans l’identifiant ou le mot de passe')
+    }
 }
 
 // Bouton de validation du login
@@ -34,6 +38,3 @@ loginForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     await fetchLogin();
 });
-
-
-

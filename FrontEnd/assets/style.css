@@ -55,10 +55,14 @@ a {
 }
 /** end reset css**/
 body {
-	max-width: 1140px;
-	margin:auto;
+	/*max-width: 1140px;*/
+	margin: auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
+}
+#body_contain {
+	max-width: 1140px;
+	margin: auto;
 }
 header {
 	display: flex;
@@ -142,7 +146,6 @@ li:hover {
 
 .gallery img {
 	width: 100%;
-
 }
 #contact {
 	width: 50%;
@@ -296,7 +299,7 @@ button:hover {
 	margin-left: 21px;
 }
 
-.btn_modification, .btn_profile-picture {
+.btn_modification, .btn_profile-picture, .btn_presentation {
 	border: none;
 	font-family: 'Work Sans';
 	font-weight: 400;
@@ -309,13 +312,19 @@ button:hover {
 	color: black;
 }
 
-#introduction button {
+.btn_profile-picture {
 	margin: 15px 0 0 49.075px;
+}
+
+.btn_presentation {
+	margin: 0 0 19px 0;
 }
 
 /* Mise en page de la modale galerie photo */
 .bloc_modal {
 	display: none;
+	justify-content: center;
+	align-items: center;
 	position: fixed;
 	z-index: 1;
 	left: 0;
@@ -334,8 +343,6 @@ button:hover {
 	border-radius: 10px;
 	position: absolute;
 	width: 380px;
-	top: 30px;
-	left: 30%;
 }
 
 .modal h2 {
@@ -490,6 +497,7 @@ button:hover {
 .preview {
 	width: 100%;
 	object-fit: cover;
+	height: auto;
 }
 
 .file_preview {

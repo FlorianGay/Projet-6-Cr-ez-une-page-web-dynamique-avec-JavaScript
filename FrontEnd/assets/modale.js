@@ -70,16 +70,15 @@ async function genererPictureGallery () {
 // Ouverture de la modale
 const openModale = function () {
     sectionModale.style.display = null;
-    modalContent.style.display = 'block'
+    modalContent.style.display = 'flex'
     modalContent.style.background = 'rgba(0, 0, 0, 0.3)';
+    sectionModale2.style.display = 'none';
     modal = sectionModale;
 }
 
 // Fermeture de la modale
 const closeModale = function () {
     if (modal === null) return;
-    sectionModale.style.display = 'none';
-    sectionModale2.style.display = 'none';
     modalContent.style.display = 'none'
     modalContent.style.background = 'rgba(0, 0, 0)';
     cleanForm();
@@ -100,6 +99,7 @@ crossCloseModale.forEach(b => {
 window.onclick = (event) => {
     if (event.target == modalContent) 
         modalContent.style.display = 'none';
+        closeModale;
 }
 
 // Fermeture via touche escape
@@ -241,5 +241,5 @@ function cleanForm() {
     addProjectForm.reset();
     addFileContainer.style.display = null;
     filePreviewContainer.style.display = null;
-    filePreview.style.display = 'none';
+    filePreview.setAttribute('src', '');
 }

@@ -7,6 +7,7 @@ const profilePicture = document.querySelector('#introduction figure');
 const sectionPortfolio = document.querySelector('#portfolio h2');
 const categoryFilter = document.querySelector('.filters');
 const adminLogin = document.querySelector('.login')
+const sectionArticle = document.querySelector('.presentation');
 
 
 // Si la valeur du token est bonne
@@ -33,6 +34,11 @@ function genererAdminElement () {
      portfolioEdition.className = 'btn_modification';
      sectionPortfolio.appendChild(portfolioEdition);
 
+     const articleEdition = document.createElement('button');
+     articleEdition.className = 'btn_presentation'
+     articleEdition.innerHTML = `<i class="fa-regular fa-pen-to-square"></i> modifier`;
+     sectionArticle.appendChild(articleEdition);
+
      // Disparition des filtres
      categoryFilter.style.display = 'none';
 
@@ -45,7 +51,3 @@ adminLogin.addEventListener('click', function() {
     window.localStorage.removeItem('tokenId');
     window.location.href='./index.html';
 });
-
-
-
-
