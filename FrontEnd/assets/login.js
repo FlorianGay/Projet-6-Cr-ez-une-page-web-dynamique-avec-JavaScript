@@ -19,7 +19,6 @@ async function fetchLogin() {
         .then((response) => {
             console.log(response);
             if (response.status === '404') {
-                // afficher error message
                 return false;
             }
             return response.json()
@@ -29,7 +28,8 @@ async function fetchLogin() {
             window.location.href = './index.html';
         })
     } else {
-        alert('Erreur dans l’identifiant ou le mot de passe')
+        const error = document.querySelector('.error');
+        error.style.display = 'flex';
     }
 }
 

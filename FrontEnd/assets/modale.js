@@ -38,7 +38,7 @@ async function genererGallery () {
             sectionGallery.appendChild(figureGallery);
         });
     } catch (error) {
-        alert('erreur serveur')
+        alert('impossible de se connecter au serveur')
     }
 }
 
@@ -63,7 +63,7 @@ async function genererPictureGallery () {
         const btnDeletes = document.querySelectorAll('.btn_delete');
         btnDeletes.forEach((btnDelete) => btnDelete.addEventListener('click', () => deleteWork(btnDelete.id)));
     } catch (error) {
-        alert('erreur serveur')
+        alert('impossible de se connecter au serveur')
     }
 }
 
